@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Preferência de Disciplinas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .error {
+            color: red;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Formulário de Preferência de Disciplinas para Professores</h1>
+    <p>A soma das notas deve ser maior que <strong>15</strong>.</p>
+
+    <form id="preferenceForm" onsubmit="return validateForm()">
+        <label for="nome">Nome do Professor:</label>
+        <input type="text" id="nome" name="nome" required><br><br>
+
+        <label for="matematica">Matemática:</label>
+        <input type="number" id="matematica" name="matematica" min="0" max="5" value="0" required><br><br>
+
+        <label for="ciencias">Ciências:</label>
+        <input type="number" id="ciencias" name="ciencias" min="0" max="5" value="0" required><br><br>
+
+        <label for="historia">História:</label>
+        <input type="number" id="historia" name="historia" min="0" max="5" value="0" required><br><br>
+
+        <label for="geografia">Geografia:</label>
+        <input type="number" id="geografia" name="geografia" min="0" max="5" value="0" required><br><br>
+
+        <label for="portugues">Língua Portuguesa:</label>
+        <input type="number" id="portugues" name="portugues" min="0" max="5" value="0" required><br><br>
+
+        <label for="educacaoFisica">Educação Física:</label>
+        <input type="number" id="educacaoFisica" name="educacaoFisica" min="0" max="5" value="0" required><br><br>
+
+        <p class="error" id="errorMessage">A soma das notas deve ser maior que 15!</p>
+
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script>
+        function validateForm() {
+            // Obter valores das disciplinas
+            var matematica = parseInt(document.getElementById('matematica').value);
+            var ciencias = parseInt(document.getElementById('ciencias').value);
+            var historia = parseInt(document.getElementById('historia').value);
+            var geografia = parseInt(document.getElementById('geografia').value);
+            var portugues = parseInt(document.getElementById('portugues').value);
+            var educacaoFisica = parseInt(document.getElementById('educacaoFisica').value);
+
+            // Calcular a soma das notas
+            var somaTotal = matematica + ciencias + historia + geografia + portugues + educacaoFisica;
+
+            // Definir o valor mínimo exigido
+            var valorMinimo = 15;
+
+            // Verificar se a soma é maior que o valor mínimo
+            if (somaTotal > valorMinimo) {
+                return true; // Permitir o envio do formulário
+            } else {
+                document.getElementById('errorMessage').style.display = 'block'; // Exibir mensagem de erro
+                return false; // Impedir o envio do formulário
+            }
+        }
+    </script>
+
+</body>
+</html>
